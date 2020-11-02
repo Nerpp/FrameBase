@@ -1,35 +1,20 @@
 <?php
 namespace App\Module;
 
-use App\Module\Security\UrlTreatment;
+use App\Module\Security\Filter;
 
-class Routeur{
+class Router{
 
-    private $_sPage    = '';
-    private $_sFolder = '';
+    protected $_sPage           = '';
+    protected $_sFolder         = '';
+    protected $_aParam          = array();
     private $_aCleanedUrl       = array();
-    private $_aParam = array();
+
 
     public function __construct()
     {
-        $this->_aCleanedUrl = (new UrlTreatment())->getParametres();
+        $this->_aCleanedUrl = (new Filter())->__setParameters();
         $this->router();
-    }
-
-    public function __setPage()
-    {
-      return  $this->_sPage;
-
-    }
-
-    public function __setFolder()
-    {
-        return $this->_sFolder;
-    }
-
-    public function __setParam()
-    {
-        return $this->_aParam;
     }
 
     private function router()
@@ -47,9 +32,4 @@ class Routeur{
                 break;
         }
     }
-
-
-
-
-
 }
